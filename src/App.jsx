@@ -28,8 +28,8 @@ export default function Board() {
 
   function handleClick(i) {
 
-    // check if the square is already filled
-    if (squares[i]) {
+    // check if the square is already filled or if board is full
+    if (squares[i] || calculateWinner(squares)) {
       return;
     }
 
