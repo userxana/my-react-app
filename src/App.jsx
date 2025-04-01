@@ -1,15 +1,11 @@
-// function Square({ value }) {
-//   return <button className="square">{value}</button>;
-// }
-
-
 // React Developer Tools
 
 import { useState } from 'react';
 
-
-// Square component to receive the value prop from the Board component. 
+// Square component to receive the value and on square click prop from the Board component. 
 function Square({ value, onSquareClick }) {
+
+  // returns square with the value from the board 
   return (
     <button className="square" onClick={onSquareClick}>
       {value}
@@ -17,13 +13,17 @@ function Square({ value, onSquareClick }) {
   );
 }
 
+
 export default function Board() {
 
+  // 
   const [xIsNext, setXIsNext] = useState(true);
 
 
   // The parent component can pass that state back down to the children via props. 
   // This keeps the child components in sync with each other and with their parent.
+
+  // made null square array of length 9 for the board squares
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
@@ -33,8 +33,11 @@ export default function Board() {
       return;
     }
 
+
+    // slice makes copy of squares array for immutability
     const nextSquares = squares.slice();
 
+    // modifies array with X or O on click 
     if (xIsNext) {
       nextSquares[i] = "X";
     } else {
@@ -42,7 +45,11 @@ export default function Board() {
     }
 
     // nextSquares[i] = "X";
+
+    // updates square state in array 
     setSquares(nextSquares);
+
+    // alternates between X and O
     setXIsNext(!xIsNext);
 
   }
@@ -89,6 +96,7 @@ export default function Board() {
 
 
 
+// returns winning square state
 function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
