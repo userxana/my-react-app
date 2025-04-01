@@ -19,14 +19,27 @@ function Square({ value, onSquareClick }) {
 
 export default function Board() {
 
+  const [xIsNext, setXIsNext] = useState(true);
+
+
   // The parent component can pass that state back down to the children via props. 
   // This keeps the child components in sync with each other and with their parent.
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
     const nextSquares = squares.slice();
-    nextSquares[i] = "X";
+
+    if (xIsNext) {
+      nextSquares[i] = "X";
+    } else {
+      nextSquares[i] = "O";
+    }
+
+
+    // nextSquares[i] = "X";
     setSquares(nextSquares);
+    setXIsNext(!xIsNext);
+
   }
 
   // className="square" is a button property or prop that tells CSS how to style the button
@@ -37,7 +50,7 @@ export default function Board() {
 
   // function calls square which checks props for value and on square click which changes
   // state from null to X in the main squares array and for the correct square order
-  
+
   return (
     <>
       <div className="board-row">
