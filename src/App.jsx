@@ -27,6 +27,12 @@ export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
+
+    // check if the square is already filled
+    if (squares[i]) {
+      return;
+    }
+
     const nextSquares = squares.slice();
 
     if (xIsNext) {
