@@ -16,7 +16,8 @@ function Square({ value, onSquareClick }) {
 
 export default function Board() {
 
-  // 
+  // XisNext is initially true then it can change to O by setting 
+  // XisNext to false
   const [xIsNext, setXIsNext] = useState(true);
 
 
@@ -33,6 +34,8 @@ export default function Board() {
       return;
     }
 
+
+    // if square can still be filled it checks state of square through array
 
     // slice makes copy of squares array for immutability
     const nextSquares = squares.slice();
@@ -54,6 +57,7 @@ export default function Board() {
 
   }
 
+  // displays winner or next player (based on state)
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
